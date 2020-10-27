@@ -28,6 +28,20 @@ function animate(){                                 //function that repeat itsel
     c.lineTo(x+2,y);
     c.lineTo(x,y);
     c.stroke();
+
+    checkCollision(asteroid){
+        let collides = false;
+        if (this.topLeftXPos < otherRectangle.topLeftXPos + otherRectangle.width && 
+            this.topLeftXPos + this.width > otherRectangle.topLeftXPos &&
+            this.topLeftYPos < otherRectangle.topLeftYPos + otherRectangle.lenght &&
+            this.topLeftYPos + this.lenght > otherRectangle.topLeftYPos){
+                collides = true;
+            }
+        return collides;
+    }
+    if(checkCollision(asteroid)){
+        
+    }
     requestAnimationFrame(animate);                 //call the the function inwich it is
 }
 animate();                                          //first call to initiate the infinity loop
