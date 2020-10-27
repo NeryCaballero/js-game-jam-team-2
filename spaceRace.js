@@ -3,16 +3,10 @@ let canvas = document.querySelector("canvas");      //select the canvas
 canvas.height = innerHeight;                        //set the height to the height of the screen
 canvas.width = innerWidth / nbPlayers -20;          //set the width of the width divided by the number of players, and with 20 px to have a space between them
 let c = canvas.getContext("2d");                    //context will be needed to create canvas object
-let x=100;
-let y=100;
-let a=50;
-let b=50;
-let da=3;
+let x=100;                                          //X-coordinate of the ship
+let y=100;                                          //Y-ccordinate of the ship
 
-
-
-
-function animate(){                                 //function that repeat itself infinitely
+function animate(){                                 //function that repeat itself infinitely so everything have to be in it
     c.clearRect(0,0,innerWidth,innerHeight);
     c.beginPath();
     c.moveTo(x,y);
@@ -34,29 +28,6 @@ function animate(){                                 //function that repeat itsel
     c.lineTo(x+2,y);
     c.lineTo(x,y);
     c.stroke();
-    c.fillRect(a,b,20,20);
-    a+=da;          
     requestAnimationFrame(animate);                 //call the the function inwich it is
 }
 animate();                                          //first call to initiate the infinity loop
-
-
-
-
-// c.lineTo(75,30);
-// c.lineTo(100,50);
-// c.lineTo(85,50);
-// c.lineTo(85,85);
-// c.lineTo(110,110);
-// c.lineTo(95,110);
-// c.lineTo(95,135);
-// c.lineTo(80,135);
-// c.lineTo(80,110);
-// c.lineTo(70,110);
-// c.lineTo(70,135);
-// c.lineTo(55,135);
-// c.lineTo(55,110);
-// c.lineTo(40,110);
-// c.lineTo(65,85);
-// c.lineTo(65,50);
-// c.lineTo(50,50);
