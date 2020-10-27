@@ -36,8 +36,10 @@ function animate(){                                //function that repeat itself
     c.lineTo(x+7, y-5);
     c.lineTo(x+3, y-5);
     c.lineTo(x+3, y);
+
     c.lineTo(x+1,y);
     c.strokeStyle="white";
+
     c.stroke();
     
     if (upPressed===true){
@@ -77,4 +79,3 @@ document.addEventListener("keydown", ()=>{
 
 
  animate();                                          // first call to initiate the infinity loop 
-
