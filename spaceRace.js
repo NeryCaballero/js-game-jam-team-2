@@ -4,8 +4,8 @@ canvas.height = innerHeight;                        //set the height to the heig
 canvas.width = innerWidth / nbPlayers;              //set the width of the width divided by the number of players, and with 20 px to have a space between them
 
 let c = canvas.getContext("2d");                    // context will be needed to create canvas object
-let x = innerWidth/4;                           // X-coordinate of the ship
-let y = innerHeight - 200;                      // Y-coordinate ofthe ship
+let x = innerWidth/4;                               // X-coordinate of the ship
+let y = innerHeight - 20;                          // Y-coordinate ofthe ship
 
 function animate(){                                //function that repeat itself infinitely so everything have to be in it
 
@@ -33,20 +33,24 @@ function animate(){                                //function that repeat itself
     c.lineTo(x+7, y-5);
     c.lineTo(x+3, y-5);
     c.lineTo(x+3, y);
-    c.lineTo(x+1,y); 
+    c.lineTo(x+1, y); 
 
     c.stroke();
 
-    requestAnimationFrame(animate);                 // call the the function inwich it is
-}
+    document.addEventListener("keyup", ()=>{
+    y = y+1;
+    }); 
 
-    input.addEventListener("keyup", ()=>{
-        y = y+1;
-    });        
-
-    input.addEventListener("keydown", ()=>{
+    document.addEventListener("keydown", ()=>{
         y = y-1;
     }); 
 
+requestAnimationFrame(animate);                 // call the the function inwich it is
+}
 
- animate();                                          // first call to initiate the infinity loop 
+       
+
+    
+
+
+animate();                                          // first call to initiate the infinity loop 
