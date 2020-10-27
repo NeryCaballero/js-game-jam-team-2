@@ -4,8 +4,11 @@ canvas.height = innerHeight;                        //set the height to the heig
 canvas.width = innerWidth / nbPlayers;              //set the width of the width divided by the number of players, and with 20 px to have a space between them
 
 let c = canvas.getContext("2d");                    // context will be needed to create canvas object
-let x = innerWidth/4;                               // X-coordinate of the ship
-let y = innerHeight - 20;                          // Y-coordinate ofthe ship
+let x = innerWidth/4;                           // X-coordinate of the ship
+let y = innerHeight - 200;                      // Y-coordinate ofthe ship
+let upPressed = false;
+let downPressed = false;
+
 
 function animate(){                                //function that repeat itself infinitely so everything have to be in it
 
@@ -33,24 +36,46 @@ function animate(){                                //function that repeat itself
     c.lineTo(x+7, y-5);
     c.lineTo(x+3, y-5);
     c.lineTo(x+3, y);
-    c.lineTo(x+1, y); 
+
+    c.lineTo(x+1,y);
+    c.strokeStyle="white";
 
     c.stroke();
-
-    document.addEventListener("keyup", ()=>{
-    y = y+1;
-    }); 
-
-    document.addEventListener("keydown", ()=>{
-        y = y-1;
-    }); 
-
-requestAnimationFrame(animate);                 // call the the function inwich it is
-}
-
-       
-
     
+    if (upPressed===true){
+        y-=1;
+    }
+    if (downPressed===true){
+        y+=1;
+    }
+   
+    console.log(y)
+
+    requestAnimationFrame(animate);                 // call the the function inwich it is
+}
+     
+document.addEventListener("keyup", ()=>{
+    if (event.keyCode==38){
+        upPressed=false;
+    }
+    if (event.keyCode==40){
+        downPressed=false;
+    }
+});
+
+document.addEventListener("keydown", ()=>{
+    if (event.keyCode==38){
+        upPressed=true;
+    }
+    if (event.keyCode==40){
+        downPressed=true;
+    }
+});
 
 
-animate();                                          // first call to initiate the infinity loop 
+    // input.addEventListener("keydown", ()=>{
+    //     y = y-1;
+    // }); 
+
+
+ animate();                                          // first call to initiate the infinity loop 
