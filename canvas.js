@@ -1,11 +1,11 @@
 // setting the canvas
 
-let canvas = document.querySelector('canvas');
+// let canvas = document.querySelector('canvas');
 
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+// canvas.width = window.innerWidth;
+// canvas.height = window.innerHeight;
 
-let c = canvas.getContext('2d');
+// let c = canvas.getContext('2d');
 
 // design of the asteroid
 
@@ -22,8 +22,8 @@ let x = 6;                                                                //set 
 let dx = 5; 
 let radius = 5;
 
-function animate() {  
-    requestAnimationFrame(animate);                                       
+function move() {  
+                                         
     c.clearRect(0, 0, innerWidth, innerHeight);
 
     c.beginPath();                                                          //circle
@@ -38,10 +38,10 @@ function animate() {
     }
 
     x += dx;                                                                //set velocity
-     
+    requestAnimationFrame(move);  
 }
 
-animate();
+move();
 
 // for (let i = 0; i < 10; i++) {
 // 	let star = {}; 
