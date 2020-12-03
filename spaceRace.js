@@ -5,7 +5,7 @@ canvas.width = innerWidth / nbPlayers;              //set the width of the width
 
 let c = canvas.getContext("2d");                    // context will be needed to create canvas object
 let x = innerWidth/4;                           // X-coordinate of the ship
-let y = innerHeight - 200;                      // Y-coordinate ofthe ship
+let y = innerHeight - 200;                      // Y-coordinate of the ship
 let upPressed = false;
 let downPressed = false;
 
@@ -14,7 +14,7 @@ function animate(){                                //function that repeat itself
 
     c.clearRect(0,0,innerWidth,innerHeight);            //this clears a given section of the canvas, in this case from topleft (0,0) to bottomright(innerWidth,innerHeight)
     c.beginPath();                                      // path begins ant the bottom center point and to the left.
-    c.moveTo(x,y);                                      // heigth of the ship is 40px, width is 30px.
+    c.moveTo(x,y);                                      // height of the ship is 40px, width is 30px.
     c.lineTo(x-3, y);
     c.lineTo(x-3, y-5);
     c.lineTo(x-7, y-5);
@@ -51,7 +51,7 @@ function animate(){                                //function that repeat itself
    
     console.log(y)
 
-    requestAnimationFrame(animate);                 // call the the function inwich it is
+    requestAnimationFrame(animate);                 // call the the function in wich it is
 }
      
 document.addEventListener("keyup", ()=>{
