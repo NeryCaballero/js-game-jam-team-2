@@ -4,15 +4,49 @@ canvas.height = innerHeight;                        //set the height to the heig
 canvas.width = innerWidth / nbPlayers;              //set the width of the width divided by the number of players, and with 20 px to have a space between them
 
 let c = canvas.getContext("2d");                    // context will be needed to create canvas object
-let x = innerWidth/4;                           // X-coordinate of the ship
-let y = innerHeight - 200;                      // Y-coordinate of the ship
+let x = innerWidth/4;                               // X-coordinate of the ship
+let y = innerHeight - 200;                          // Y-coordinate ofthe ship
 let upPressed = false;
 let downPressed = false;
 
+// //movement of asteroid
 
-function animate(){                                //function that repeat itself infinitely so everything have to be in it
+let s = 0;                                                                //set x so the position can be changed
+let ds = 5; 
+let radius = 5;
+let array_horiz=[];
+for (let j=0;j<innerHeight-100;j+=50){
+    random_signed=Math.random() < 0.5 ? -1 : 1;
+    array_horiz[j/50]=[Math.floor(Math.random()*innerWidth/nbPlayers),random_signed*ds];
+}
+console.log(array_horiz);
 
-    c.clearRect(0,0,innerWidth,innerHeight);            //this clears a given section of the canvas, in this case from topleft (0,0) to bottomright(innerWidth,innerHeight)
+function animate(){                                                             //function that repeat itself infinitely so everything have to be in it
+    // //asteroid
+    c.clearRect(0, 0, innerWidth, innerHeight);                                 // Clear func()
+    // //loop to create multiple asteroids                 
+    let i = 0;
+    for (let p=0; p<innerHeight-100; p+=50){                                    // func() creates asteroids in new vertical position(p)
+        s=array_horiz[i][0];
+        ds=array_horiz[i][1];                                                      // ds = speed
+        if (s > innerWidth / nbPlayers || s < 0) {                              // changes the horizontal position of the drawing            
+            ds = -ds;                                                           // intercalates the direction. positive=right negative=left
+        }
+        s += ds;                                                                // horizontal position + or - speed > creates the illusion of movement :D
+        array_horiz[i][0]=s;
+        array_horiz[i][1]=ds;
+        c.beginPath();                                                          // Drawing creates asteroid
+        c.arc(s, p, radius, 0, Math.PI * 2, false);                             // s = horizontal p = vertical
+        c.strokeStyle = 'white';                                                //
+        c.fillStyle = "#FFFFFF";                                                //
+        c.fill(); 
+        c.stroke();  
+        i++;                                                                   // increment i by 1 (i is the variable that stores the horizontal position of every asteroid)
+    }                                                                           
+
+    // //draw ship
+
+    // c.clearRect(0,0,innerWidth,innerHeight);            //this clears a given section of the canvas, in this case from topleft (0,0) to bottomright(innerWidth,innerHeight)
     c.beginPath();                                      // path begins ant the bottom center point and to the left.
     c.moveTo(x,y);                                      // height of the ship is 40px, width is 30px.
     c.lineTo(x-3, y);
@@ -49,10 +83,11 @@ function animate(){                                //function that repeat itself
         y+=1;
     }
    
-    console.log(y)
-
-    requestAnimationFrame(animate);                 // call the the function in wich it is
-}
+    console.log(y) 
+ 
+    requestAnimationFrame(animate);
+}                                                          //set velocity
+    
      
 document.addEventListener("keyup", ()=>{
     if (event.keyCode==38){
@@ -78,4 +113,8 @@ document.addEventListener("keydown", ()=>{
     // }); 
 
 
- animate();                                          // first call to initiate the infinity loop 
+ animate();               
+ 
+ // first call to initiate the infinity loop 
+
+
